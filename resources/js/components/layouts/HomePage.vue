@@ -13,15 +13,12 @@
             </div>
             <div>
                 <h1 class="mt-5 mb-3 p-2 text-center" style="background-color: rgba(0,0,0,0.11);">Mes formations</h1>
-                <div v-for="formation in formations" class=" mt-4 d-flex jutify-content-around">
-                    <div>
-                        
-                        <ul>
-                            <li>
-                                <h4><U>{{ formation.name }}</U></h4>
-                            </li>
-                        </ul>
-                        <h5 v-html="formation.description"></h5>
+                <div class="d-flex justify-content-around text-center align-items-center">
+                    <div v-for="formation in formations">
+                        <div class="bubble">
+                            <h3>{{ formation.name }}</h3>
+                            <h4 v-html="formation.description" class="p-4"></h4>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,5 +53,27 @@ li{
 
 h3{
     padding: 5px;
+}
+
+.bubble {
+    background-color: rgba(0,0,0,0.11); /* Couleur de fond */
+    border-radius: 25px; /* Coins arrondis */
+    padding: 20px; /* Espace intérieur */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    margin: 10px 0; /* Marge externe */
+    border: 1px solid #ddd; /* Bordure fine */
+    max-width: 500px;
+    flex-direction: row;
+}
+
+.bubble h3 {
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center; /* Centrer le texte */
+}
+
+.bubble h4 {
+    color: #666;
+    font-size: 16px;
 }
 </style>
