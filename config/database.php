@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'sitewebperso'),
 
     /*
     |--------------------------------------------------------------------------
@@ -43,14 +43,14 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
-        'recrutement' => [
+        'sitewebperso' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_FOR_' . Str::upper((env('APP_ENV'))) . '_HOST', '127.0.0.1'),
             'port' => env('DB_FOR_' . Str::upper((env('APP_ENV'))) . '_PORT', '5432'),
-            'database' => env('DB_FOR_' . Str::upper((env('APP_ENV'))) . '_DB', 'recrutement'),
-            'username' => env('DB_FOR_' . Str::upper((env('APP_ENV'))) . '_USER', 'recrutement'),
-            'password' => env('DB_FOR_' . Str::upper((env('APP_ENV'))) . '_PASS', ''),
+            'database' => env('DB_FOR_' . Str::upper((env('APP_ENV'))) . '_DB', 'sitewebperso'),
+            'username' => env('DB_FOR_' . Str::upper((env('APP_ENV'))) . '_USER', 'laravel'),
+            'password' => env('DB_FOR_' . Str::upper((env('APP_ENV'))) . '_PASS', 'laravel2024*'),
             'charset' => 'utf8',
             'prefix_indexes' => true,
             'schema' => 'public',

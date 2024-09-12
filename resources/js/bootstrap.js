@@ -9,6 +9,7 @@ window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 import $ from 'jquery';
 window.$ = $;
+window.bootstrap = require('bootstrap');
 
 
 
