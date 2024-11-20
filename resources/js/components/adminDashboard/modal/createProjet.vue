@@ -16,6 +16,12 @@
                             <label for="desc">Description du projet</label>
                             <trumbowyg class="form-control" v-model="projet.description"></trumbowyg>
                         </div>
+                        <div class="form-group">
+                            <label for="desc">Compétences Associée</label>
+                            <select v-if="competence.length > 0" v-model="competences.competences_id" class="form-select">
+                                <option v-for="competence in competence" :value="competence.id">{{ competence.titre }}</option>
+                            </select>
+                        </div>
                         <div class="d-flex justify-content-between">
                             <div class="mb-5 mt-3">
                                 <button class="btn btn-success" data-bs-dismiss="modal" @click="saveProjets(projet)">Valider</button>
@@ -36,6 +42,8 @@ import 'trumbowyg/dist/ui/trumbowyg.css';
 export default {
     props: {
         projets: [],
+        competences: [],
+        competence: [],
     },
 
     data() {
@@ -43,6 +51,7 @@ export default {
             projet: {
                 name: "",
                 description: "",
+                competence_associe: "",
             },
         }
     },

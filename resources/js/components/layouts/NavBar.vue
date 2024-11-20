@@ -3,10 +3,6 @@
         <nav v-if="screenWidth > 900" id="mainNavBar" class="navbar navbar-expand-md navbar-light col-12"
         style="top:0px; height: 80px; z-index: 1000; box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.493); background-color: currentColor;">
             <div class="container">
-                <a class="navbar-brand d-flex justify-content-around align-items-center" href="/">
-                    <img src="../../../../public/images/LogoAdWeb.png" alt="Logo" width="50" height="50">
-                    <h4 style="color: aliceblue; padding: 5px;" class="d-flex text-center mt-2">AdWeb & CO</h4>
-                </a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size: 16px">
                     <ul class="navbar-nav me-auto" style="align-items: center">
                         <li class="nav-items">

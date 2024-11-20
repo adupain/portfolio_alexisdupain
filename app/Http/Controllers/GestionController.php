@@ -63,11 +63,11 @@ class GestionController extends Controller
 
     function getCompetences()
     {
-        $competences = Competences::selectRaw("
+        $competence = Competences::selectRaw("
             competences.*
             ")
             ->get();
-        return $competences;
+        return $competence;
     }
 
     /** Sauvegarder les données de A propos de moi

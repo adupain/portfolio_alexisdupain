@@ -57,13 +57,13 @@ h3{
 
 .bubble {
     background-color: rgba(0,0,0,0.11); /* Couleur de fond */
-    border-radius: 25px; /* Coins arrondis */
+    border-radius: 15px; /* Coins arrondis */
     padding: 20px; /* Espace intérieur */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
-    margin: 10px 0; /* Marge externe */
+    margin: 20px;
     border: 1px solid #ddd; /* Bordure fine */
-    max-width: 500px;
-    flex-direction: row;
+    max-width: 100%;
+    border-color: black;
 }
 
 .bubble h3 {

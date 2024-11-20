@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-        <create-projet :projets="projets" :competences="competences"></create-projet>
+        <create-projet :projets="projets" :competence="competence"></create-projet>
         <h1>Gestion des données "Portfolio"</h1>
         <button class="btn btn-success mb-3" @click="openModalCreateProjet">Créer un projet</button>
        <table class="table table-bordered table-responsive">
@@ -39,8 +39,8 @@
                     </div>
                 </td>
                 <td>
-                    <select v-if="competences.length > 0" v-model="competence.number" class="form-select">
-                        <option v-for="competence in competences" :value="competence.id">{{ competence.titre }}</option>
+                    <select v-if="competence.length > 0" v-model="competences.competences_id" class="form-select">
+                        <option v-for="competence in competence" :value="competence.id">{{ competence.titre }}</option>
                     </select>
                 </td>
                 <td class="aligne-middle text-center">
@@ -62,7 +62,7 @@ export default {
     data() {
         return {
             projets: [],
-            competences: []
+            competence: [], 
         }
     },
 
@@ -169,7 +169,7 @@ export default {
         this.$nextTick(async function () {
             this.projets= await axios.get('/gestion/projets/get');
             this.projets= this.projets.data;
-            this.competence= await axios.get('/gestion/competences/get');
+            this.competence= await axios.get('/gestion/competence/get');
             this.competence= this.competence.data;
         })
     },

@@ -31,7 +31,7 @@ Route::get('/portfolio', [App\Http\Controllers\LayoutController::class, 'portfol
 Route::put('/gestion/projet/save', [App\Http\Controllers\GestionController::class, 'saveProjets']);
 Route::delete('/gestion/projet/delete', [App\Http\Controllers\GestionController::class, 'deleteProjets']);
 Route::get('/gestion/projets/get' , [App\Http\Controllers\GestionController::class, 'getProjets']);
-Route::get('/gestion/competences/get' , [App\Http\Controllers\GestionController::class, 'getCompetences']);
+Route::get('/gestion/competence/get' , [App\Http\Controllers\GestionController::class, 'getCompetences']);
 Route::post('gestion/projet/create', [App\Http\Controllers\GestionController::class, 'saveProjets']);
 
 //Route pour Propos
