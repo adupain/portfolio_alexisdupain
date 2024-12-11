@@ -7,8 +7,7 @@
                     <div class="d-flex align-items-center">
                         <img src="/images/PhotoAdWebHomePage.jpg">
                     </div>
-                    <h2 style="max-width: 700px;" v-html="propos[0].description">
-                    </h2>
+                    <h2 class="m-4" v-html="propos[0].description"></h2>
                 </div>
             </div>
             <div>

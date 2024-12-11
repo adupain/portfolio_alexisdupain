@@ -21,6 +21,20 @@ class GestionController extends Controller
         return view('adminDashBoard.index');
     }
 
+    function indexSecureDashboard()
+    {
+        return view('secureAdminDashBoard.index');
+    }
+
+    function indexCV()
+    {
+        return view('cv.index');
+    }
+
+    function indexVeille()
+    {
+        return view('veille.index');
+    }
     /**
      * Recuperer les données de "Propos"
      * @return [type]
