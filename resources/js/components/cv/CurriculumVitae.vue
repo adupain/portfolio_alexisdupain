@@ -3,9 +3,14 @@
         <div class="header">
             <h1>Dupain Alexis</h1>
             <p>Étudiant - Passionné par l'informatique et les technologies</p>
-            <a href="/images/CV Alexis Dupain.pdf" download="CV Alexis Dupain.pdf">
-                <button class="download-btn">Télécharger le CV (PDF)</button>
-            </a>
+            <div class="button-container">
+                <a href="/images/CV Alexis Dupain.pdf" download="CV Alexis Dupain.pdf">
+                    <button class="download-btn">Télécharger le CV (PDF)</button>
+                </a>
+                <a href="/images/CV Alexis Dupain.pdf" target="_blank">
+                    <button class="view-btn">Visualiser le CV</button>
+                </a>
+            </div>
         </div>
 
         <div class="sections">
@@ -18,7 +23,7 @@
                 <h2>Contact</h2>
                 <p><strong>Adresse :</strong> 24 chemin d'arnacette, Bayonne 64000</p>
                 <p><strong>Email :</strong> dupainalexis@gmail.com</p>
-                <p><strong>Téléphone :</strong> 06.77.70.14.01</p>
+                <p><strong>Téléphone :</strong> 07.67.70.14.01</p>
                 <p><strong>Permis B :</strong> en cours</p>
             </div>
 
@@ -92,9 +97,14 @@
         margin: 0;
     }
 
-    .download-btn {
-        display: inline-block;
-        margin-top: 15px;
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .download-btn, .view-btn {
         padding: 10px 20px;
         background-color: #3498db;
         color: white;
@@ -102,11 +112,18 @@
         border-radius: 5px;
         cursor: pointer;
         font-size: 16px;
-        text-decoration: none;
     }
 
-    .download-btn:hover {
+    .download-btn:hover, .view-btn:hover {
         background-color: #2980b9;
+    }
+
+    .view-btn {
+        background-color: #2ecc71;
+    }
+
+    .view-btn:hover {
+        background-color: #27ae60;
     }
 
     .sections {

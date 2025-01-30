@@ -3,10 +3,10 @@
         <div class="d-block w-100 shadow-lg" id="sideBarAdminDashboard">
             <ul class="m-0  d-flex flex-wrap flex-row">
                 <li class="col p-2" @click="loadComponent('Projet')">
-                    <p class="m-0">Liste des projets</p>
+                    <p class="m-0">Visualisation par projets</p>
                 </li>
                 <li class="col p-2" @click="loadComponent('Projet-Competence')">
-                    <p class="m-0">Liste des projets par compétences</p>
+                    <p class="m-0">Visualisation par competénces</p>
                 </li>
             </ul>
         </div>
@@ -23,7 +23,7 @@ import ListeProjetCompetence from './ListeProjetCompetence.vue'
 export default {
     data() {
         return {
-            loadedProjet: false,
+            loadedProjet: true,
             loadedProjetCompetence: false,
 
         }

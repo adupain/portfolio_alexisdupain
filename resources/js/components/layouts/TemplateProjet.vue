@@ -8,14 +8,10 @@
 
     <h2 class="mt-4">Compétences Associées :</h2>
     <div class="competences-container">
-      <router-link
-        v-for="(competence, index) in competencesLiees"
-        :key="index"
-        :to="`/fiche_competence/${competence.id}`"
-        class="competence-button"
-      >
+      <a v-for="(competence, index) in competencesLiees" :key="index" class="competence-button"
+        :href="`/fiche_competence/${competence.id}`">
         {{ competence.titre }}
-      </router-link>
+      </a>
     </div>
   </div>
   <div v-else>
@@ -32,11 +28,6 @@ export default {
       type: Object,
       required: true,
     },
-    competences: {
-      type: Array,
-      required: false,
-      default: () => [],
-    },
   },
   data() {
     return {
@@ -49,10 +40,10 @@ export default {
       const competenceIds = Array.isArray(this.projet.competence_id)
         ? this.projet.competence_id
         : String(this.projet.competence_id)
-            .replace(/[{}]/g, "") // Supprimer les accolades
-            .split(",") // Diviser en tableau
-            .map((id) => parseInt(id.trim(), 10)) // Convertir en nombres
-            .filter((id) => !isNaN(id)); // Retirer les valeurs invalides
+          .replace(/[{}]/g, "") // Supprimer les accolades
+          .split(",") // Diviser en tableau
+          .map((id) => parseInt(id.trim(), 10)) // Convertir en nombres
+          .filter((id) => !isNaN(id)); // Retirer les valeurs invalides
 
       return competenceIds
         .map((id) =>
@@ -86,16 +77,19 @@ export default {
   padding: 20px;
   border-radius: 8px;
 }
+
 .titre {
   font-size: 1.5rem;
   color: #343a40;
 }
+
 .competences-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* Espacement entre les boutons */
+  gap: 10px;
   margin-top: 15px;
 }
+
 .competence-button {
   padding: 10px 20px;
   border: 1px solid #4caf50;
@@ -106,17 +100,20 @@ export default {
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
   text-align: center;
-  text-decoration: none; /* Supprime le soulignement */
+  text-decoration: none;
 }
+
 .competence-button:hover {
   background-color: #4caf50;
   color: #fff;
   transform: scale(1.05);
 }
+
 ul {
   list-style: none;
   padding: 0;
 }
+
 ul li {
   margin: 5px 0;
   padding: 5px;

@@ -17,7 +17,7 @@
             {{ competence.titre }}
           </li>
         </ul>
-        <a class="btn btn-link" :href="`/fiche_projet/${projet.id}`">Plus de détails...</a>
+        <a class="btn btn-primary" :href="`/fiche_projet/${projet.id}`">Plus de détails...</a>
       </div>
     </div>
   </div>

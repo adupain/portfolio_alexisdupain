@@ -10,7 +10,7 @@
           {{ projet.name }}
         </li>
       </ul>
-      <a class="btn btn-link" :href="`/fiche_competence/${competence.id}`">Plus de détails...</a>
+      <a class="btn btn-primary" :href="`/fiche_competence/${competence.id}`">Plus de détails...</a>
     </div>
   </div>
 </template>
