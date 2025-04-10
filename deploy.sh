@@ -18,6 +18,6 @@ git add -A
 git commit -m 'deploy'
 
 # Pousser sur la branche gh-pages
-git push -f git@github.com:Nekrozz/portfolio_alexisdupain.git main:gh-pages
+git push -f git@github.com:nekrozz.github.io/portfolio_alexisdupain.git main:gh-pages
 
 cd -
