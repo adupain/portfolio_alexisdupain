@@ -64,7 +64,7 @@ export default {
                     cancelButtonText: "Annuler"
                 }).then(async (result) => {
                     if (result.isConfirmed) {
-                        const response = await axios.post("/gestion/formation/create", { data: formation });
+                        const response = await axios.post("/gestion/formations/create", { data: formation });
                         const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',

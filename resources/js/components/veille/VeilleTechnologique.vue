@@ -39,38 +39,7 @@
 export default {
     data() {
         return {
-            articles: [
-                {
-                    title: "Nouveaux composants d'ordinateur : La révolution des processeurs ARM",
-                    description: "Les processeurs ARM, de plus en plus utilisés dans les ordinateurs, apportent une meilleure efficacité énergétique et des performances accrues. Découvrez les derniers modèles d'ARM en 2024.",
-                    url: "https://www.lemonde.fr/technologies/article/2024/11/21/nouveaux-processeurs-arm_6194855_5062393.html",
-                    createdAt: new Date('2024-11-21T10:00:00')
-                },
-                {
-                    title: "La cybersécurité face aux attaques des ransomwares en 2024",
-                    description: "Les ransomwares continuent de cibler des infrastructures critiques. Ce rapport examine les dernières tendances et stratégies de défense dans le domaine de la cybersécurité.",
-                    url: "https://www.lemonde.fr/cybercriminalite/article/2024/11/18/cybersecurite-et-ransomwares_6194701_5062393.html",
-                    createdAt: new Date('2024-11-18T14:30:00')
-                },
-                {
-                    title: "L'avenir des métiers de l'informatique : Vers une automatisation accrue",
-                    description: "L'intelligence artificielle et l'automatisation redéfinissent les rôles des professionnels de l'informatique. Quelles compétences seront nécessaires dans les prochaines décennies ?",
-                    url: "https://www.lemonde.fr/technologies/article/2024/11/20/avenir-des-metiers-informatique_6194758_5062393.html",
-                    createdAt: new Date('2024-11-20T09:45:00')
-                },
-                {
-                    title: "La guerre des cartes graphiques : Nvidia et AMD en 2024",
-                    description: "Nvidia et AMD se livrent une bataille acharnée pour dominer le marché des cartes graphiques avec leurs dernières innovations. Analyse des nouveaux produits pour les gamers et les professionnels.",
-                    url: "https://www.lemonde.fr/technologies/article/2024/11/19/guerre-des-cartes-graphiques_6194765_5062393.html",
-                    createdAt: new Date('2024-11-19T16:10:00')
-                },
-                {
-                    title: "Les nouveaux SSD PCIe 5.0 : Le futur du stockage ultrarapide",
-                    description: "Avec l'arrivée des SSD PCIe 5.0, les vitesses de transfert de données atteignent de nouveaux sommets. Découvrez les modèles à venir pour 2024.",
-                    url: "https://www.lemonde.fr/technologies/article/2024/11/17/ssd-pcie-5_6194625_5062393.html",
-                    createdAt: new Date('2024-11-17T11:20:00')
-                }
-            ],
+            articles: [],
             isAddingArticle: false,
             newArticle: {
                 title: "",

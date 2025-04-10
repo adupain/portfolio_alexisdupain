@@ -56,7 +56,7 @@ export default {
     // Récupère les compétences depuis l'API
     async fetchCompetences() {
       try {
-        const response = await axios.get("/gestion/competence/get");
+        const response = await axios.get("/gestion/competences/get");
         this.competences = response.data;
       } catch (error) {
         console.error("Erreur lors de la récupération des compétences :", error);

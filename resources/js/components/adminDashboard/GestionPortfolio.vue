@@ -120,7 +120,7 @@ export default {
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     try {
-                        const response = await axios.put('/gestion/projet/save', { data });
+                        const response = await axios.put('/gestion/projets/save', { data });
                         if (response.status === 200) {
                             Swal.fire('Succès', 'Le projet a été sauvegardé avec succès !', 'success');
                         } else {
@@ -147,7 +147,7 @@ export default {
                 }).then(async (result) => {
                     if (result.isConfirmed) {
                         try {
-                            const response = await axios.delete(`/gestion/projet/delete/${projet.id}`);
+                            const response = await axios.delete(`/gestion/projets/delete/${projet.id}`);
                             if (response.status === 200) {
                                 this.projets = this.projets.filter(p => p.id !== projet.id);
                                 Swal.fire('Supprimé !', 'Le projet a été supprimé avec succès.', 'success');
@@ -182,7 +182,7 @@ export default {
         try {
             // Récupération des projets
             const projetsResponse = await axios.get('/gestion/projets/get');
-            const competencesResponse = await axios.get('/gestion/competence/get');
+            const competencesResponse = await axios.get('/gestion/competences/get');
 
             // Correction : gérer les cas où competence_id est null ou non formaté
             this.projets = projetsResponse.data.map(projet => ({

@@ -30,7 +30,7 @@ export default {
     // Méthode pour récupérer les compétences
     async fetchCompetences() {
       try {
-        const response = await axios.get('/gestion/competence/get');
+        const response = await axios.get('/gestion/competences/get');
         this.competences = response.data; // Stocke les compétences récupérées dans le tableau
       } catch (error) {
         console.error("Erreur lors de la récupération des compétences:", error);

@@ -38,9 +38,9 @@ export default {
   computed: {
     projetsLiees() {
       // Vérifie si project_id est un tableau ou une chaîne nécessitant un traitement
-      const projetIds = Array.isArray(this.competence.project_id)
-        ? this.competence.project_id
-        : String(this.competence.project_id)
+      const projetIds = Array.isArray(this.competence.projet_id)
+        ? this.competence.projet_id
+        : String(this.competence.projet_id)
           .replace(/[{}]/g, "") // Supprimer les accolades
           .split(",") // Diviser en tableau
           .map((id) => parseInt(id.trim(), 10)) // Convertir en nombres

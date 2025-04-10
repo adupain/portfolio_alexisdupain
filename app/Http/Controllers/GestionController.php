@@ -9,6 +9,7 @@ use App\Models\Projets;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class GestionController extends Controller
@@ -19,11 +20,6 @@ class GestionController extends Controller
     function indexDashboard()
     {
         return view('adminDashBoard.index');
-    }
-
-    function indexSecureDashboard()
-    {
-        return view('secureAdminDashBoard.index');
     }
 
     function indexCV()
@@ -95,7 +91,7 @@ class GestionController extends Controller
             'message' => 'Les données ont bien été sauvegardé'
         ];
         if (!empty($propos)) {
-            if($request->method() == 'PUT'){
+            if ($request->method() == 'PUT') {
                 try {
                     DB::beginTransaction();
                     AProposDeMoi::where('id', $propos['id'])->update(Arr::except($propos, ['show_description']));
@@ -114,7 +110,7 @@ class GestionController extends Controller
                 'message' => 'Aucune donnée'
             ];
         }
-        return $result;        
+        return $result;
     }
 
     /** Sauvegarder les données de Formations
@@ -129,7 +125,7 @@ class GestionController extends Controller
         ];
         if (!empty($formations)) {
             $new_formation = null;
-            if($request->method() == 'POST'){
+            if ($request->method() == 'POST') {
                 try {
                     DB::beginTransaction();
                     $new_formation = Formations::create(Arr::except($formations, ['show_description']));
@@ -143,7 +139,7 @@ class GestionController extends Controller
                     ];
                 }
             }
-            if($request->method() == 'PUT'){
+            if ($request->method() == 'PUT') {
                 try {
                     DB::beginTransaction();
                     Formations::where('id', $formations['id'])->update(Arr::except($formations, ['show_description']));
@@ -162,7 +158,7 @@ class GestionController extends Controller
                 'message' => 'Aucune donnée'
             ];
         }
-        return $result;        
+        return $result;
     }
 
     public function deleteFormations(Request $request)
@@ -193,7 +189,7 @@ class GestionController extends Controller
         return $result;
     }
 
-    /** Sauvegarder les données de Formations
+    /** Sauvegarder les données de Projets
      * @return [type]
      */
     public function saveProjets(Request $request)
@@ -205,7 +201,7 @@ class GestionController extends Controller
         ];
         if (!empty($projets)) {
             $new_projet = null;
-            if($request->method() == 'POST'){
+            if ($request->method() == 'POST') {
                 try {
                     DB::beginTransaction();
                     $new_projet = Projets::create(Arr::except($projets, ['show_description']));
@@ -219,7 +215,7 @@ class GestionController extends Controller
                     ];
                 }
             }
-            if($request->method() == 'PUT'){
+            if ($request->method() == 'PUT') {
                 try {
                     DB::beginTransaction();
                     Projets::where('id', $projets['id'])->update(Arr::except($projets, ['show_description']));
@@ -238,7 +234,7 @@ class GestionController extends Controller
                 'message' => 'Aucune donnée'
             ];
         }
-        return $result;        
+        return $result;
     }
 
     public function deleteProjets(Request $request)
@@ -267,5 +263,63 @@ class GestionController extends Controller
             ];
         }
         return $result;
+    }
+
+    public function saveCompetence(Request $request)
+    {
+        $competence = $request->data;
+
+        $result = [
+            'statut' => 'ok',
+            'message' => 'La compétence a bien été mise à jour.'
+        ];
+
+        if (!empty($competence)) {
+            try {
+                DB::beginTransaction();
+
+                // Laravel va automatiquement caster en array PostgreSQL grâce au cast du modèle
+                Competences::where('id', $competence['id'])->update(
+                    Arr::except($competence, ['show_description'])
+                );
+
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollBack();
+                $result = [
+                    'statut' => 'ko',
+                    'message' => 'Erreur lors de la mise à jour : ' . $e->getMessage()
+                ];
+            }
+        } else {
+            $result = [
+                'statut' => 'ko',
+                'message' => 'Aucune donnée reçue.'
+            ];
+        }
+
+        return $result;
+    }
+
+
+
+    public function login(Request $request)
+    {
+        // Validation des données
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
+
+        // Tenter de se connecter avec les informations fournies
+        if (Auth::attempt($credentials)) {
+            // Connexion réussie, redirection
+            return redirect()->intended('/dashboard');
+        } else {
+            // Si la connexion échoue
+            return back()->withErrors([
+                'email' => 'Email ou mot de passe incorrect.',
+            ]);
+        }
     }
 }

@@ -75,7 +75,7 @@ export default {
                     cancelButtonText: "Annuler"
                 }).then(async (result) => {
                     if (result.isConfirmed) {
-                        const response = await axios.put("/gestion/formation/save", { data: formation});
+                        const response = await axios.put("/gestion/formations/save", { data: formation});
                         const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
@@ -118,7 +118,7 @@ export default {
                     cancelButtonText: "Annuler"
                 }).then(async (result) => {
                     if (result.isConfirmed) {
-                        const response = await axios.delete("/gestion/formation/delete", { data: formation },);
+                        const response = await axios.delete("/gestion/formations/delete", { data: formation },);
                         let targetIndex;
                         const Toast = Swal.mixin({
                         toast: true,

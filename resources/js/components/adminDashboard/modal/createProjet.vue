@@ -90,7 +90,7 @@ export default {
                     if (result.isConfirmed) {
                         try {
                             // Envoi de la requête POST au back-end pour créer le projet
-                            const response = await axios.post("/gestion/projet/create", { data });
+                            const response = await axios.post("/gestion/projets/create", { data });
 
                             // Afficher un message de succès ou d'erreur
                             const Toast = Swal.mixin({

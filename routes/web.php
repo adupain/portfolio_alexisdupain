@@ -1,59 +1,39 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LayoutController;
+use App\Http\Controllers\GestionController;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/', [LayoutController::class, 'home'])->name('home');
+Route::get('/portfolio', [LayoutController::class, 'portfolio'])->name('portfolio');
+Route::get('/cv', [GestionController::class, 'indexCv']);
+Route::get('/veille', [GestionController::class, 'indexVeille']);
 
-Route::get('/', function () {
-    return view('home');
+
+Route::get('/dashboard', [GestionController::class, 'indexDashboard']);
+
+Route::get('/gestion/competences/get', [GestionController::class, 'getCompetences']);
+
+Route::prefix('gestion/projets')->group(function () {
+    Route::get('/get', [GestionController::class, 'getProjets']);
+    Route::post('/create', [GestionController::class, 'saveProjets']);
+    Route::put('/save', [GestionController::class, 'saveProjets']);
+    Route::delete('/delete/{id}', [GestionController::class, 'deleteProjets']);
 });
-
-Auth::routes();
-
-Route::get('/', [App\Http\Controllers\LayoutController::class, 'home'])->name('home');
-
-//Route pour accèder au dashboard
-Route::get('/dashboard', [App\Http\Controllers\GestionController::class, 'indexDashboard']);
-
-//Route pour sécurisation du dashboard
-Route::get('/securedashboard', [App\Http\Controllers\GestionController::class, 'indexSecureDashboard']);
-
-//Route pour accèder au cv
-Route::get('/cv', [App\Http\Controllers\GestionController::class, 'indexCv']);
-
-//Route pour accèder a veille technologique
-Route::get('/veille', [App\Http\Controllers\GestionController::class, 'indexVeille']);
-
-//Route pour Portfolio
-Route::get('/portfolio', [App\Http\Controllers\LayoutController::class, 'portfolio'])->name('portfolio');
-Route::put('/gestion/projet/save', [App\Http\Controllers\GestionController::class, 'saveProjets']);
-Route::delete('/gestion/projet/delete/{id}', [App\Http\Controllers\GestionController::class, 'deleteProjets']);
-Route::get('/gestion/projets/get' , [App\Http\Controllers\GestionController::class, 'getProjets']);
-Route::get('/gestion/competence/get' , [App\Http\Controllers\GestionController::class, 'getCompetences']);
-Route::post('gestion/projet/create', [App\Http\Controllers\GestionController::class, 'saveProjets']);
-
-//Route pour Propos
-Route::put('/gestion/propos/save', [App\Http\Controllers\GestionController::class, 'savePropos']);
-Route::get('/gestion/propos/get' , [App\Http\Controllers\GestionController::class, 'getPropos']);
-
-//Route pour Formations
-Route::put('/gestion/formation/save', [App\Http\Controllers\GestionController::class, 'saveFormations']);
-Route::delete('/gestion/formation/delete', [App\Http\Controllers\GestionController::class, 'deleteFormations']);
-Route::get('/gestion/formations/get' , [App\Http\Controllers\GestionController::class, 'getFormations']);
-Route::post('/gestion/formation/create', [App\Http\Controllers\GestionController::class, 'saveFormations']);
-Auth::routes();
-
-//Route pour Templates
-Route::get('/fiche_projet/{id}', [App\Http\Controllers\LayoutController::class, 'indexProjet']);
-Route::get('/fiche_competence/{id}', [App\Http\Controllers\LayoutController::class, 'indexCompetence']);
+Route::prefix('gestion/propos')->group(function () {
+    Route::get('/get', [GestionController::class, 'getPropos']);
+    Route::put('/save', [GestionController::class, 'savePropos']);
+});
+Route::prefix('gestion/formations')->group(function () {
+    Route::get('/get', [GestionController::class, 'getFormations']);
+    Route::post('/create', [GestionController::class, 'saveFormations']);
+    Route::put('/save', [GestionController::class, 'saveFormations']);
+    Route::delete('/delete', [GestionController::class, 'deleteFormations']);
+});
+Route::prefix('gestion/competence')->group(function () {
+    Route::get('/get', [GestionController::class, 'getCompetences']);
+    Route::put('/save', [GestionController::class, 'saveCompetence']);
+});
+Route::get('/fiche_projet/{id}', [LayoutController::class, 'indexProjet']);
+Route::get('/fiche_competence/{id}', [LayoutController::class, 'indexCompetence']);

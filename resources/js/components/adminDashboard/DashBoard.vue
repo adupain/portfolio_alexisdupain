@@ -11,12 +11,16 @@
                 <li class="col p-2" @click="loadComponent('Portfolio')">
                     <p class="m-0">Gestion des données "Portfolio"</p>
                 </li>
+                <li class="col p-2" @click="loadComponent('Competences')">
+                    <p class="m-0">Gestion des données "Compétences"</p>
+                </li>
             </ul>
         </div>
         <div class="pt-3" style="width: 100%;">
             <gestion-propos v-if="loadedPropos"></gestion-propos>
             <gestion-formation v-if="loadedFormation"></gestion-formation>
             <gestion-portfolio v-if="loadedPortfolio"></gestion-portfolio>
+            <gestion-competence v-if="loadedCompetence"></gestion-competence>
         </div>
     </div>
 </template>
@@ -25,12 +29,14 @@
 import GestionPropos from './GestionPropos.vue'
 import GestionFormation from './GestionFormation.vue'
 import GestionPortfolio from './GestionPortfolio.vue'
+import GestionCompetence from './GestionCompetence.vue'
 export default {
     data() {
         return {
             loadedPropos: false,
             loadedFormation: false,
             loadedPortfolio: false,
+            loadedCompetence: false,
 
         }
     },
@@ -39,6 +45,7 @@ export default {
         GestionPropos,
         GestionFormation,
         GestionPortfolio,
+        GestionCompetence,
     },
 
     methods: {
@@ -48,18 +55,28 @@ export default {
                     this.loadedPropos = true
                     this.loadedFormation = false
                     this.loadedPortfolio = false
+                    this.loadedCompetence = false
                     break;
 
                 case 'Portfolio':
                     this.loadedPropos = false
                     this.loadedFormation = false
                     this.loadedPortfolio = true
+                    this.loadedCompetence = false
                     break;
                 
                 case 'Formations':
                     this.loadedPropos = false
                     this.loadedFormation = true
                     this.loadedPortfolio = false
+                    this.loadedCompetence = false
+                    break;
+
+                case 'Competences':
+                    this.loadedPropos = false
+                    this.loadedFormation = false
+                    this.loadedPortfolio = false
+                    this.loadedCompetence = true
                     break;
 
                 default:
