@@ -11,7 +11,15 @@ Route::get('/cv', [GestionController::class, 'indexCv']);
 Route::get('/veille', [GestionController::class, 'indexVeille']);
 
 
-Route::get('/dashboard', [GestionController::class, 'indexDashboard']);
+Route::middleware(['admin'])->group(function () {
+    Route::get('/dashboard', [GestionController::class, 'indexDashboard']);
+});
+
+Route::get('/logout', [GestionController::class, 'logout']);
+
+Route::get('/securedashboard', [GestionController::class, 'indexSecureDashboard']);
+Route::post('/securedashboard', [GestionController::class, 'checkLogin']);
+
 
 Route::get('/gestion/competences/get', [GestionController::class, 'getCompetences']);
 

@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class GestionController extends Controller
 {
@@ -20,6 +22,11 @@ class GestionController extends Controller
     function indexDashboard()
     {
         return view('adminDashBoard.index');
+    }
+
+    function indexSecureDashboard()
+    {
+        return view('adminSecureDashBoard.index');
     }
 
     function indexCV()
@@ -301,25 +308,38 @@ class GestionController extends Controller
         return $result;
     }
 
-
-
-    public function login(Request $request)
+    public function checkLogin(Request $request)
     {
-        // Validation des données
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:6',
+        // Validation des données envoyées par la requête
+        $request->validate([
+            'id_admin' => 'required|integer',
+            'name_admin' => 'required|string',
+            'mdp_admin' => 'required|string',
         ]);
-
-        // Tenter de se connecter avec les informations fournies
-        if (Auth::attempt($credentials)) {
-            // Connexion réussie, redirection
-            return redirect()->intended('/dashboard');
-        } else {
-            // Si la connexion échoue
-            return back()->withErrors([
-                'email' => 'Email ou mot de passe incorrect.',
-            ]);
+    
+        // Récupérer l'administrateur avec les informations envoyées
+        $admin = DB::table('secure_dashboard')
+            ->where('id_admin', $request->id_admin)
+            ->where('name_admin', $request->name_admin)
+            ->first();
+    
+        // Vérifier si l'administrateur existe et si le mot de passe est correct
+        if ($admin && Hash::check($request->mdp_admin, $admin->mdp_admin)) {
+            // Si l'authentification est correcte, enregistrer l'administrateur dans la session
+            session(['admin_id' => $admin->id_admin]);
+    
+            // Retourner une réponse de succès
+            return response()->json(['success' => true]);
         }
+    
+        // Si les identifiants sont incorrects
+        return response()->json(['success' => false], 401);
     }
+
+    public function logout()
+    {
+        session()->forget('admin_id');
+        return redirect('/securedashboard');
+    }
+    
 }
