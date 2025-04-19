@@ -45,4 +45,13 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+            return redirect('/')->with('error', "Tu n'as pas accès à cette page.");
+        }
+
+        return parent::render($request, $exception);
+    }
 }
