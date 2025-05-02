@@ -32,7 +32,6 @@ Route::middleware(['role:visiteur'])->group(function () {
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['role:admin'])->group(function () {
     Route::get('/dashboard', [GestionController::class, 'indexDashboard']);
 
     // Gestion des projets
@@ -58,11 +57,10 @@ Route::middleware(['role:admin'])->group(function () {
     });
 
     // Gestion des compétences
-    Route::prefix('gestion/competence')->group(function () {
+    Route::prefix('gestion/competences')->group(function () {
         Route::get('/get', [GestionController::class, 'getCompetences']);
         Route::put('/save', [GestionController::class, 'saveCompetence']);
     });
-});
 
 /*
 |--------------------------------------------------------------------------
