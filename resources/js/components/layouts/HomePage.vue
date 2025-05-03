@@ -3,7 +3,7 @@
     <!-- Bannière principale -->
     <div class="banner">
       <div class="banner-text">
-        <h1>Bienvenue!</h1>
+        <h1>Bienvenue sur mon portfolio !</h1>
         <a href="/portfolio" class="banner-button">Découvrir mon travail</a>
       </div>
     </div>
