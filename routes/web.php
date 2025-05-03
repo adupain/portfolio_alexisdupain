@@ -10,6 +10,7 @@ Route::get('/fiche_projet/{id}', [LayoutController::class, 'indexProjet']);
 Route::get('/fiche_competence/{id}', [LayoutController::class, 'indexCompetence']);
 Route::get('/cv', [GestionController::class, 'indexCv']);
 Route::get('/veille', [GestionController::class, 'indexVeille']);
+Route::get('/securedashboard', [GestionController::class, 'indexSecureDashboard']);
 Route::get('/dashboard', [GestionController::class, 'indexDashboard']);
 
 // Gestion des projets
