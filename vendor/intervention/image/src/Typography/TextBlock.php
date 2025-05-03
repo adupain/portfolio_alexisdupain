@@ -8,6 +8,12 @@ use Intervention\Image\Collection;
 
 class TextBlock extends Collection
 {
+    /**
+     * Create new text block object
+     *
+     * @param string $text
+     * @return void
+     */
     public function __construct(string $text)
     {
         foreach (explode("\n", $text) as $line) {
@@ -61,7 +67,7 @@ class TextBlock extends Collection
     public function longestLine(): Line
     {
         $lines = $this->lines();
-        usort($lines, function (Line $a, Line $b) {
+        usort($lines, function (Line $a, Line $b): int {
             if ($a->length() === $b->length()) {
                 return 0;
             }

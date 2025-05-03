@@ -13,6 +13,9 @@ use Intervention\Image\Modifiers\DrawBezierModifier as ModifiersDrawBezierModifi
 class DrawBezierModifier extends ModifiersDrawBezierModifier implements SpecializedInterface
 {
     /**
+     * {@inheritdoc}
+     *
+     * @see ModifierInterface::apply()
      * @throws RuntimeException
      * @throws GeometryException
      */
@@ -23,7 +26,7 @@ class DrawBezierModifier extends ModifiersDrawBezierModifier implements Speciali
                 throw new GeometryException('You must specify either 3 or 4 points to create a bezier curve');
             }
 
-            list($polygon, $polygon_border_segments) = $this->calculateBezierPoints();
+            [$polygon, $polygon_border_segments] = $this->calculateBezierPoints();
 
             if ($this->drawable->hasBackgroundColor() || $this->drawable->hasBorder()) {
                 imagealphablending($frame->native(), true);
@@ -35,6 +38,7 @@ class DrawBezierModifier extends ModifiersDrawBezierModifier implements Speciali
                     $this->backgroundColor()
                 );
 
+                imagesetthickness($frame->native(), 0);
                 imagefilledpolygon(
                     $frame->native(),
                     $polygon,
@@ -50,7 +54,8 @@ class DrawBezierModifier extends ModifiersDrawBezierModifier implements Speciali
                 if ($this->drawable->borderSize() === 1) {
                     imagesetthickness($frame->native(), $this->drawable->borderSize());
 
-                    for ($i = 0; $i < count($polygon); $i += 2) {
+                    $count = count($polygon);
+                    for ($i = 0; $i < $count; $i += 2) {
                         if (array_key_exists($i + 2, $polygon) && array_key_exists($i + 3, $polygon)) {
                             imageline(
                                 $frame->native(),
@@ -156,11 +161,11 @@ class DrawBezierModifier extends ModifiersDrawBezierModifier implements Speciali
         $polygon_border_segments = [];
 
         // define ratio t; equivalent to 5 percent distance along edge
-        $t = (float) 0.05;
+        $t = 0.05;
 
         $polygon[] = $this->drawable->first()->x();
         $polygon[] = $this->drawable->first()->y();
-        for ($i = 0 + $t; $i < 1; $i += $t) {
+        for ($i = $t; $i < 1; $i += $t) {
             if ($this->drawable->count() === 3) {
                 $ip = $this->calculateQuadraticBezierInterpolationPoint($i);
             } elseif ($this->drawable->count() === 4) {

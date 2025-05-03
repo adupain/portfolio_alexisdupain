@@ -254,7 +254,6 @@ interface ImageInterface extends IteratorAggregate, Countable
      * Return color that is mixed with transparent areas when converting to a format which
      * does not support transparency.
      *
-     * @deprecated Use configuration options of image manager instead
      * @throws RuntimeException
      * @return ColorInterface
      */
@@ -264,7 +263,6 @@ interface ImageInterface extends IteratorAggregate, Countable
      * Set blending color will have no effect unless image is converted into a format
      * which does not support transparency.
      *
-     * @deprecated Use configuration options of image manager instead
      * @param mixed $color
      * @throws RuntimeException
      * @return ImageInterface
@@ -506,9 +504,10 @@ interface ImageInterface extends IteratorAggregate, Countable
     public function scaleDown(?int $width = null, ?int $height = null): self;
 
     /**
-     * Takes the given dimensions and scales it to the largest possible size matching
-     * the original size. Then this size is positioned on the original and cut out
-     * before being resized to the desired size from the arguments
+     * Takes the specified width and height and scales them to the largest
+     * possible size that fits within the original size. This scaled size is
+     * then positioned on the original and cropped, before this result is resized
+     * to the desired size using the arguments
      *
      * @link https://image.intervention.io/v3/modifying/resizing#fitted-image-resizing
      * @param int $width
@@ -642,6 +641,7 @@ interface ImageInterface extends IteratorAggregate, Countable
     /**
      * Trim the image by removing border areas of similar color within a the given tolerance
      *
+     * @link https://image.intervention.io/v3/modifying/resizing#trim-image
      * @param int $tolerance
      * @throws RuntimeException
      * @throws AnimationException
@@ -672,10 +672,10 @@ interface ImageInterface extends IteratorAggregate, Countable
     /**
      * Fill image with given color
      *
-     * If coordinates are transferred in the form of X and Y values, the function
-     * is executed as a flood fill. This means that the color at the specified
-     * position is taken as a reference and all adjacent pixels are also filled
-     * with the same color.
+     * If an optional position is specified for the filling process ln the form
+     * of x and y coordinates, the process is executed as flood fill. This means
+     * that the color at the specified position is taken as a reference and all
+     * adjacent pixels are also filled with the filling color.
      *
      * If no coordinates are specified, the entire image area is filled.
      *

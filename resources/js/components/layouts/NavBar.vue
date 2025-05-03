@@ -9,7 +9,7 @@
                         <li><a href="/cv">Mon CV (Téléchargeable)</a></li>
                         <li><a href="/veille">Veille Technologique</a></li>
                     </ul>
-                    <a href="/securedashboard" class="dashboard-btn">Tableau de bord</a>
+                    <a href="/dashboard" class="dashboard-btn">Tableau de bord</a>
                 </div>
             </div>
         </nav>
@@ -34,7 +34,7 @@
                     <li><a href="/cv" @click="toggleMenu">Mon CV (Téléchargeable)</a></li>
                     <li><a href="/veille" @click="toggleMenu">Veille Technologique</a></li>
                 </ul>
-                <a href="/securedashboard" class="dashboard-btn" @click="toggleMenu">Tableau de bord</a>
+                <a href="/dashboard" class="dashboard-btn" @click="toggleMenu">Tableau de bord</a>
             </div>
         </div>
     </header>

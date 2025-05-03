@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     projetsLiees() {
-      // Vérifie si project_id est un tableau ou une chaîne nécessitant un traitement
+      // Vérifie si competence_id est un tableau ou une chaîne nécessitant un traitement
       const projetIds = Array.isArray(this.competence.projet_id)
         ? this.competence.projet_id
         : String(this.competence.projet_id)

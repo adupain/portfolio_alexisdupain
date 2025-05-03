@@ -11,11 +11,17 @@ use Intervention\Image\Exceptions\DecoderException;
 use Intervention\Image\Image;
 use Intervention\Image\Interfaces\ColorInterface;
 use Intervention\Image\Interfaces\ImageInterface;
+use Intervention\Image\Interfaces\SpecializedInterface;
 use Intervention\Image\Modifiers\AlignRotationModifier;
 use Intervention\Image\Modifiers\RemoveAnimationModifier;
 
-class NativeObjectDecoder extends SpecializableDecoder
+class NativeObjectDecoder extends SpecializableDecoder implements SpecializedInterface
 {
+    /**
+     * {@inheritdoc}
+     *
+     * @see DecoderInterface::decode()
+     */
     public function decode(mixed $input): ImageInterface|ColorInterface
     {
         if (!is_object($input)) {
@@ -29,8 +35,15 @@ class NativeObjectDecoder extends SpecializableDecoder
         // For some JPEG formats, the "coalesceImages()" call leads to an image
         // completely filled with background color. The logic behind this is
         // incomprehensible for me; could be an imagick bug.
-        if ($input->getImageFormat() != 'JPEG') {
+        if ($input->getImageFormat() !== 'JPEG') {
             $input = $input->coalesceImages();
+        }
+
+        // turn images with colorspace 'GRAY' into 'SRGB' to avoid working on
+        // greyscale colorspace images as this results images loosing color
+        // information when placed into this image.
+        if ($input->getImageColorspace() == Imagick::COLORSPACE_GRAY) {
+            $input->setImageColorspace(Imagick::COLORSPACE_SRGB);
         }
 
         // create image object

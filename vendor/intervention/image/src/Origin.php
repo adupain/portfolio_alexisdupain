@@ -17,6 +17,7 @@ class Origin
         protected string $mediaType = 'application/octet-stream',
         protected ?string $filePath = null
     ) {
+        //
     }
 
     /**
@@ -40,12 +41,15 @@ class Origin
     /**
      * Set media type of current instance
      *
-     * @param string $type
+     * @param string|MediaType $type
      * @return Origin
      */
-    public function setMediaType(string $type): self
+    public function setMediaType(string|MediaType $type): self
     {
-        $this->mediaType = $type;
+        $this->mediaType = match (true) {
+            is_string($type) => $type,
+            default => $type->value,
+        };
 
         return $this;
     }
@@ -81,5 +85,18 @@ class Origin
     public function fileExtension(): ?string
     {
         return empty($this->filePath) ? null : pathinfo($this->filePath, PATHINFO_EXTENSION);
+    }
+
+    /**
+     * Show debug info for the current image
+     *
+     * @return array<string, null|string>
+     */
+    public function __debugInfo(): array
+    {
+        return [
+            'mediaType' => $this->mediaType(),
+            'filePath' => $this->filePath(),
+        ];
     }
 }
